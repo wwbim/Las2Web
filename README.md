@@ -34,6 +34,10 @@
 - **中文**：双击运行无参启动现代化 PyQt6 桌面界面；在终端或脚本中传参调用即可直接以无头 CLI 模式运行，完美契合批处理自动化工作流。
 - **English**: Launch without arguments to enjoy a clean, modern PyQt6 desktop GUI, or supply command-line arguments to execute high-throughput headless batch conversions.
 
+### 7. 🛡️ 客户机零运行时依赖 & 云盘全隔离打包 / Zero-Dependency Client & Isolated Temp Build
+- **中文**：内置集成 Visual C++ 2015-2022 全套运行库，客户电脑无 Python、无 VC++ 也能直接解压运行；打包流水线 100% 在系统临时目录（`%TEMP%`）运行，彻底告别 Google Drive 云端硬盘实时同步带来的文件锁死隐患。
+- **English**: Complete bundling of Visual C++ 2015-2022 runtime DLLs; client PCs require no Python or VC++ installations. Automated packaging runs 100% in `%TEMP%` to eliminate Google Drive file locking issues.
+
 ---
 
 ## 🚀 快速上手 / Quick Start

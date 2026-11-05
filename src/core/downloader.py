@@ -20,6 +20,8 @@ POTREE_DOWNLOAD_URL = (
 def get_base_dir() -> Path:
     """Get root directory of the application whether running from source or frozen binary."""
     if getattr(sys, "frozen", False):
+        if hasattr(sys, "_MEIPASS"):
+            return Path(sys._MEIPASS)
         return Path(sys.executable).parent
     return Path(__file__).resolve().parent.parent.parent
 
@@ -30,9 +32,13 @@ def get_converter_path() -> Path | None:
     Returns Path if found and executable, else None.
     """
     base_dir = get_base_dir()
+    exe_dir = Path(sys.executable).parent if getattr(sys, "frozen", False) else base_dir
     candidate_paths = [
         base_dir / "bin" / "PotreeConverter" / "PotreeConverter.exe",
         base_dir / "bin" / "PotreeConverter.exe",
+        exe_dir / "bin" / "PotreeConverter" / "PotreeConverter.exe",
+        exe_dir / "bin" / "PotreeConverter.exe",
+        exe_dir / "PotreeConverter.exe",
     ]
 
     for p in candidate_paths:

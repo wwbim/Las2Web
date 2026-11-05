@@ -13,15 +13,42 @@ This document records all formal version iterations and major changes of Las2Web
 
 ## 项目开发耗时统计 / Development Time Metrics
 
-> ⏱️ **项目累计总工时 / Total Active Development Time**: **1 小时 15 分钟 (1.25 Hours)**  
-> 📅 **自然时间跨度 / Total Calendar Span**: **2026-11-05 22:30 至 2026-11-05 23:45**  
-> 🔢 **累计交互与执行步骤 / Total Engineering Steps**: **75 Steps**  
+> ⏱️ **项目累计总工时 / Total Active Development Time**: **1 小时 45 分钟 (1.75 Hours)**  
+> 📅 **自然时间跨度 / Total Calendar Span**: **2026-11-05 22:30 至 2026-11-05 23:15**  
+> 🔢 **累计交互与执行步骤 / Total Engineering Steps**: **110 Steps**  
 > 🔄 **更新机制 / Update Policy**: 每次版本构建打包发布时基于真实日志自动重新精算累计工时。
 
 ### 阶段与每日工时分解 / Daily Breakdown
 | 日期 / Date | 活跃开发时段 / Active Sprints | 有效工时 / Active Hours | 核心迭代内容 / Milestones |
 | :--- | :--- | :---: | :--- |
-| **2026-11-05** | 22:30~23:45 | 1h 15m (1.25h) | 项目脚手架初始化、PotreeConverter 2.1.5 集成、极简拖拽就地转换 GUI、中英双语无感切换与 BIM-Scope 查看器无缝对接 / Scaffold setup, PotreeConverter integration, drag-and-drop in-place GUI, bilingual toggle & BIM-Scope integration |
+| **2026-11-05** | 22:30~23:15 | 1h 45m (1.75h) | 项目初始化、PotreeConverter 集成、GUI 双语切换、非 ASCII 路径免疫、全隔离 %TEMP% 打包管线、客户机零运行时依赖与专属点云高程地形图标 / Initial setup, PotreeConverter integration, GUI bilingual toggle, non-ASCII immunity, isolated %TEMP% build pipeline, zero-dependency client bundling & custom terrain icon |
+
+---
+
+## [v1.2611052315] - 2026-11-05 23:15
+
+### 独立绿色发行版与全隔离打包管线 / Isolated Temp Packaging & Standalone Deliverables
+- **全隔离 %TEMP% 打包构建管线 / 100% Isolated %TEMP% Build Pipeline**
+  - **中文**:
+    1. **网盘同步锁死根治**: 为避免 Google Drive 等云盘实时同步高频锁死构建临时文件，`build.py` 将整个源码暂存、PyInstaller 编译过程、中间缓存（`workpath`、`specpath`、`distpath`）100% 迁移至本地系统 `%TEMP%` 中执行，构建完毕后自动清空临时工作区。
+    2. **标准 Deliverables 输出**: 编译产物自动生成独立免安装便携目录 `Deliverables/Las2Web/` 以及便携分发压缩包 `Deliverables/Las2Web_win64.zip`（体积压缩至仅 49.6 MB）。
+  - **English**:
+    1. **Google Drive Sync Lock Elimination**: Migrates 100% of staging, PyInstaller compilation, and intermediate caches into the local Windows `%TEMP%` directory, eliminating cloud drive file lockups and sync bottlenecks.
+    2. **Standard Deliverables Output**: Emits a self-contained portable folder (`Deliverables/Las2Web/`) and distribution archive (`Deliverables/Las2Web_win64.zip`, compressed to 49.6 MB).
+
+- **目标客户机 100% 零依赖与零运行时要求 / Zero-Dependency Runtime Guarantee**
+  - **中文**:
+    1. **全套 VC++ 运行库内置打包**: 针对目标客户全新安装或无开发环境的 Windows 电脑，将 PotreeConverter 所需的 Visual C++ 2015-2022 核心运行时库（`msvcp140.dll`、`vcruntime140.dll`、`vcruntime140_1.dll`、`msvcp140_atomic_wait.dll`、`vcomp140.dll` 等）自动提取并打包进应用程序根目录及 `bin/` 目录，彻底杜绝客户机弹出“缺少 VCRUNTIME140.dll”报错。
+    2. **纯绿色解压即用**: 客户机无需预装 Python、无需安装 VC++ Redistributable，双击即可直接秒启运行与点云转换。
+  - **English**:
+    1. **Bundled VC++ 2015-2022 Runtimes**: Bundles all necessary Visual C++ runtime DLLs (`msvcp140.dll`, `vcruntime140.dll`, `vcruntime140_1.dll`, `msvcp140_atomic_wait.dll`, `vcomp140.dll`, etc.) directly into the application distribution. Eliminates "missing VCRUNTIME140.dll" errors on clean Windows PCs.
+    2. **100% Portable & Zero-Install**: Clients require no Python installation or administrative VC++ Redistributable setups.
+
+- **专属点云高程地形图标 (las2web.ico) / Custom Point Cloud Elevation Terrain Icon**
+  - **中文**:
+    1. **高程渐变色调点云起伏地形**: 依据点云真彩色高程渲染规范，生成紫红（低海拔/基底）经过青色渐变至翠绿（山峰起伏）的三维空间起伏地形点云图徽，内嵌多分辨率图标 (`16x16` 至 `256x256`)，深度集成至可执行文件与 GUI 窗口。
+  - **English**:
+    1. **Hypsometric Tint Elevation Point Cloud Terrain**: Features a 3D undulating terrain surface rendered with point cloud elevation coloring ramping from magenta/purple to vivid green, bundled across resolutions (`16x16` to `256x256`) and integrated into `Las2Web.exe`.
 
 ---
 

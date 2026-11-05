@@ -8,6 +8,7 @@ import os
 import subprocess
 from pathlib import Path
 from PyQt6.QtCore import Qt, QThread, pyqtSignal
+from PyQt6.QtGui import QIcon
 from PyQt6.QtWidgets import (
     QMainWindow,
     QWidget,
@@ -58,6 +59,16 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.worker: ConversionWorker | None = None
         self.current_output_dir: Path | None = None
+
+        # Set Window Icon
+        base_dir = (
+            Path(sys._MEIPASS)
+            if getattr(sys, "frozen", False) and hasattr(sys, "_MEIPASS")
+            else Path(__file__).resolve().parent.parent.parent
+        )
+        icon_path = base_dir / "assets" / "las2web.ico"
+        if icon_path.exists():
+            self.setWindowIcon(QIcon(str(icon_path)))
 
         self.setWindowTitle(i18n.t("app_title"))
         self.resize(720, 680)

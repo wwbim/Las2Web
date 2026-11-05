@@ -20,6 +20,9 @@ This document provides a comprehensive inventory of all functional capabilities,
 | **无头 CLI 模式 / Headless CLI** | 完整的命令行接口，支持脚本批量转换与自动化流水线集成 | Full CLI interface for automation scripts and batch point cloud processing | ✅ 已实现 / Ready |
 | **依赖自检自下 / Auto-Dependency** | 启动时自动检查并在初次缺失时自动下载 PotreeConverter 官方二进制包 | Automatically detects and downloads PotreeConverter 2.1.5 binary on demand | ✅ 已实现 / Ready |
 | **单文件打包 / Standalone Packaging** | 包含 PyInstaller 打包脚本，可一键输出脱离 Python 环境的独立绿色软件 | Includes PyInstaller build script for creating a self-contained Windows executable | ✅ 已实现 / Ready |
+| **全隔离构建 / Isolated Temp Build** | 100% 在系统临时目录（`%TEMP%`）执行打包与临时缓存，杜绝 Google Drive 云盘同步锁死 | 100% isolated PyInstaller build execution in `%TEMP%`, completely immune to Google Drive sync locks | ✅ 已实现 / Ready |
+| **零客户机依赖 / Zero Client Dependency** | 内置集成 Visual C++ 2015-2022 核心运行库，全新 Windows 客户机无需额外安装任何运行库 | Bundles all VC++ 2015-2022 runtimes; clients require zero additional runtime installations | ✅ 已实现 / Ready |
+| **高程地形图标 / Terrain Icon** | 专属点云高程配色（紫红至翠绿渐变）起伏地形 3D 图标，内嵌至可执行文件与窗口 | Custom 3D elevation terrain point cloud icon (magenta-to-green ramp) embedded into exe & window | ✅ 已实现 / Ready |
 
 ---
 

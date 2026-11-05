@@ -7,6 +7,17 @@ or executes headless command-line conversion when arguments are supplied.
 import sys
 from pathlib import Path
 
+# Fix for Windows --windowed executable when launched with CLI arguments
+if sys.platform == "win32":
+    import ctypes
+    # Try attaching to parent console if invoked from terminal
+    if ctypes.windll.kernel32.AttachConsole(-1):
+        try:
+            sys.stdout = open("CONOUT$", "w", encoding="utf-8", errors="replace")
+            sys.stderr = open("CONOUT$", "w", encoding="utf-8", errors="replace")
+        except Exception:
+            pass
+
 # Add project root to sys.path
 BASE_DIR = Path(__file__).resolve().parent
 if str(BASE_DIR) not in sys.path:
