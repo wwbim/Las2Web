@@ -1,6 +1,7 @@
 # Las2Web ☁️
 
 > 🌐 **配套网页端三维查看器 / Companion Web 3D Viewer**: [https://wwbim.github.io/BIM-Scope/](https://wwbim.github.io/BIM-Scope/)  
+> 💾 **最新便携版发布 / Latest Release**: [Las2Web v1.2611061940](https://github.com/wwbim/Las2Web/releases/tag/v1.2611061940)  
 > 📦 **基于 PotreeConverter 驱动的极简点云切片转换工具**  
 > **A Minimal Point Cloud Octree Converter Powered by PotreeConverter for Web Viewers**  
 > 即拖即转 • 就地另存 • 纯本地运行 • 中英双语一键无感切换  
