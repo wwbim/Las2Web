@@ -25,6 +25,20 @@ This document records all formal version iterations and major changes of Las2Web
 
 ---
 
+## [v1.2611061940] - 2026-11-06 19:40
+
+### 修复独立可执行程序启动缺失 sys 模块导入 / Fix Missing sys Import in Standalone Exe
+- **中文**:
+  1. **修复 `NameError: name 'sys' is not defined`**: 修复了在 GUI 模式主窗口 `MainWindow.__init__` 动态定位打包图标路径（`sys._MEIPASS`）时遗漏 `import sys` 导致的启动崩溃问题。
+  2. **网盘覆盖写入增强**: 优化 `build.py` 交付物分发步骤，采用 `shutil.copytree(..., dirs_exist_ok=True)` 杜绝 Google Drive 在覆写删除占用目录时的 `WinError 183` 竞争异常。
+  3. **便携包全量更新**: 重新生成了 `Deliverables/Las2Web/` 及 `Deliverables/Las2Web_win64.zip`。
+- **English**:
+  1. **Fix `NameError: name 'sys' is not defined`**: Resolved the startup crash when resolving `sys._MEIPASS` icon path in `MainWindow.__init__` due to missing `import sys`.
+  2. **Robust Overwrite on Cloud Drives**: Enhanced `build.py` deployment step with `shutil.copytree(..., dirs_exist_ok=True)` to eliminate Google Drive `WinError 183` folder locking during overwrites.
+  3. **Deliverables Rebuilt**: Regenerated standalone application directory `Deliverables/Las2Web/` and portable archive `Deliverables/Las2Web_win64.zip`.
+
+---
+
 ## [v1.2611052315] - 2026-11-05 23:15
 
 ### 独立绿色发行版与全隔离打包管线 / Isolated Temp Packaging & Standalone Deliverables

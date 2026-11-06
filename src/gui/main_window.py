@@ -6,6 +6,7 @@ and seamless integration with the online BIM-Scope 3D viewer.
 
 import os
 import subprocess
+import sys
 from pathlib import Path
 from PyQt6.QtCore import Qt, QThread, pyqtSignal
 from PyQt6.QtGui import QIcon

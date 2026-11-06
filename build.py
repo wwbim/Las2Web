@@ -142,10 +142,7 @@ def build_package():
         target_app_dir = DELIVERABLES_DIR / "Las2Web"
         target_zip = DELIVERABLES_DIR / "Las2Web_win64.zip"
 
-        if target_app_dir.exists():
-            shutil.rmtree(target_app_dir, ignore_errors=True)
-        shutil.copytree(str(built_app_dir), str(target_app_dir))
-
+        shutil.copytree(str(built_app_dir), str(target_app_dir), dirs_exist_ok=True)
         shutil.copy2(str(zip_temp_path), str(target_zip))
 
         print(f"  ✓ Standalone App Folder: {target_app_dir}")
